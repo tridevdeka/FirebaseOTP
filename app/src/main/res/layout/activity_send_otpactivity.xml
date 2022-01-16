@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SendOTPActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="80dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/send" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Welcome!"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="50dp"
+                android:gravity="center"
+                android:text="We will send you an One Time Password on this mobile number"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="50dp"
+                android:gravity="center"
+                android:text="Enter Mobile Number "
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="+91-"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtMobileNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:hint="1234567890"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:background="@color/colorDivider" />
+
+            <ProgressBar
+                android:layout_marginTop="10dp"
+                android:id="@+id/progressBar"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:id="@+id/btnGetOtp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:text="get otp"
+                android:background="@drawable/bg_button"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
