@@ -29,7 +29,7 @@
             android:exported="false" />
 
         <receiver
-            android:name=".OTP_Receiver"
+            android:name=".SmsBroadcastReceiver"
             android:exported="true"
             android:permission="com.google.android.gms.auth.api.phone.permission.SEND">
             <intent-filter>

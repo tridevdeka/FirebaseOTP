@@ -35,13 +35,11 @@ import java.util.concurrent.TimeUnit;
 
 public class VerifyOTP extends AppCompatActivity {
 
-    private static final String TAG = "VerifyOTPActivity";
     private String verificationId;
-    private static final int SMS_CONSENT_REQUEST = 2;  // Set to an unused request code
     private ActivityVerifyOtpBinding binding;
     private FirebaseAuth auth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks callbacks;
-    private OTP_Receiver otp_receiver;
+    private SmsBroadcastReceiver smsBroadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,14 +88,15 @@ public class VerifyOTP extends AppCompatActivity {
         });
 
         autoOTPReceiver();
+        smsRetrieverClient();
+
 
     }
 
-
     private void autoOTPReceiver() {
-        otp_receiver = new OTP_Receiver();
-        this.registerReceiver(otp_receiver, new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION));
-        otp_receiver.OTPInitListener(new OTP_Receiver.OTPReceiverListener() {
+        smsBroadcastReceiver = new SmsBroadcastReceiver();
+        this.registerReceiver(smsBroadcastReceiver, new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION));
+        smsBroadcastReceiver.OTPInitListener(new SmsBroadcastReceiver.SmsBroadcastReceiverListener() {
             @Override
             public void onOTPSuccess(String otp) {
                 int o1 = Character.getNumericValue(otp.charAt(0));
@@ -122,20 +121,14 @@ public class VerifyOTP extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (otp_receiver != null) {
-            unregisterReceiver(otp_receiver);
-        }
 
-
+    private void smsRetrieverClient() {
         SmsRetrieverClient client = SmsRetriever.getClient(this);
         Task<Void> task = client.startSmsRetriever();
         task.addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(VerifyOTP.this, "Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(VerifyOTP.this, "OTP sent", Toast.LENGTH_SHORT).show();
             }
         });
         task.addOnFailureListener(new OnFailureListener() {
@@ -145,6 +138,13 @@ public class VerifyOTP extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(smsBroadcastReceiver);
+    }
+
 
     private void showTimer() {
         new CountDownTimer(60000, 1000) {
