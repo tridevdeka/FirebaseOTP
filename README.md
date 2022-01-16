@@ -18,7 +18,7 @@ Phone Selector(Hint Request),Automatic OTP SMS Retriever using SMS Retriever API
 * **Tridev Deka** - *LinkedIn* - [Tridev Deka](https://www.linkedin.com/in/tridev-deka/)
 
 ```
-MIT License
+Apache License
 
 Copyright (c) 2022 Tridev Deka
 ```
